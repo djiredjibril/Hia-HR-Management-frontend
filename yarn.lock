@@ -595,6 +595,11 @@
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/material-symbols/-/material-symbols-0.4.43.tgz#d1ec4dffc67364ff1c95986dc055b0be921c9d7c"
   integrity sha512-jJzgVcbkJnl48X5iBFNaL5CQHwoBElJapl8unc2Ri8DnyuBR+gRiuAD4gu3ESZjjo3sknIoYIwloOsWzKbLknQ==
 
+"@expo-google-fonts/quicksand@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/quicksand/-/quicksand-0.4.1.tgz#9201751d88985979612d7d16842a4dbe054f98fc"
+  integrity sha512-LpGdmY+CDm/GTv29qDPy8Nz1a3idWO1R6Bb+ty7flS6vfHXsdOQTRKNz93SFHdXQj0FSvVhvMLe3wTtMgf312A==
+
 "@expo/cli@^57.0.14":
   version "57.0.14"
   resolved "https://registry.yarnpkg.com/@expo/cli/-/cli-57.0.14.tgz#4b689f6f3ee4fb21ba7e78edd989f4e31adef5c3"
