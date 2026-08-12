@@ -11,7 +11,9 @@ import {
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useColorScheme } from 'nativewind';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+import { loadHasSeenOnboarding } from '@/lib/onboarding';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -24,14 +26,19 @@ export default function RootLayout() {
     Quicksand_600SemiBold,
     Quicksand_700Bold,
   });
+  const [onboardingChecked, setOnboardingChecked] = useState(false);
 
   useEffect(() => {
-    if (fontsLoaded) {
+    loadHasSeenOnboarding().finally(() => setOnboardingChecked(true));
+  }, []);
+
+  useEffect(() => {
+    if (fontsLoaded && onboardingChecked) {
       SplashScreen.hideAsync();
     }
-  }, [fontsLoaded]);
+  }, [fontsLoaded, onboardingChecked]);
 
-  if (!fontsLoaded) {
+  if (!fontsLoaded || !onboardingChecked) {
     return null;
   }
 
