@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { getHasSeenOnboarding } from '@/lib/onboarding';
 
 export default function HomeScreen() {
-  if (getHasSeenOnboarding()) {
+  if (!getHasSeenOnboarding()) {
     return <Redirect href="/onboarding" />;
   }
 
