@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "Frontend",
+    "name": "Hia RH Management",
     "slug": "Frontend",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/hia-splash-icon.png",
     "scheme": "frontend",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/hia-splash-icon.png"
     },
     "android": {
       "adaptiveIcon": {
@@ -26,13 +26,18 @@
     "plugins": [
       "expo-router",
       [
-        "expo-splash-screen",
+      "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "image": "./assets/hia-splash-full.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#17181C",
+          "dark": {
+            "image": "./assets/hia-splash-full.png",
+            "backgroundColor": "#17181C"
+          }
         }
-      ]
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true,
