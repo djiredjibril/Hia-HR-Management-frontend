@@ -3,6 +3,7 @@ import type { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 import { Pressable, ScrollView, Text, View, useWindowDimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
+import { useColorScheme } from 'nativewind';
 
 import { markOnboardingSeen } from '@/lib/onboarding';
 
@@ -35,6 +36,9 @@ const STEPS = [
 
 export default function OnboardingScreen() {
   const router = useRouter();
+  const { colorScheme } = useColorScheme();
+  const decorationColor = colorScheme === 'dark' ? '#FFFFFF' : '#0E1013';
+  
   const { width } = useWindowDimensions();
   const scrollRef = useRef<ScrollView>(null);
   const [step, setStep] = useState(0);
@@ -60,16 +64,18 @@ export default function OnboardingScreen() {
   const handleSkip = () => markOnboardingSeen().then(() => router.replace('/'));
 
   return (
-    <View className="flex-1 bg-white dark:bg-primary-958">
+    <View className="flex-1 bg-white dark:bg-[#190100]">
       <View className="absolute inset-0" pointerEvents="none">
         <BgIconLeft
           width={338}
           height={208}
+          color={decorationColor}
           style={{ position: 'absolute', top: -24, left: -70 }}
         />
         <BgIconRightMiddle
           width={314}
           height={414}
+          color={decorationColor}
           style={{ position: 'absolute', top: '50%', right: -50 }}
         />
       </View>
@@ -81,7 +87,9 @@ export default function OnboardingScreen() {
               <View
                 key={index}
                 className={`h-1 flex-1 overflow-hidden rounded-full ${
-                  index <= step ? 'bg-primary-928 dark:bg-white' : 'bg-[#AAAAAA]'
+                  index <= step
+                    ? 'bg-primary-928 dark:bg-white'
+                    : 'bg-[#AAAAAA] dark:bg-[#311C1E]'
                 }`}
               />
             ))}
@@ -123,11 +131,9 @@ export default function OnboardingScreen() {
         <View className="px-6 pb-2 pt-4">
           <Pressable
             onPress={handleNext}
-            className="items-center rounded-full bg-primary-928 py-4 active:opacity-90 dark:bg-white"
+            className="items-center rounded-full bg-primary-928 py-4 active:opacity-90 dark:bg-[#473235]"
           >
-            <Text className="font-quicksand-semibold text-base text-white dark:text-primary-928">
-              Next
-            </Text>
+            <Text className="font-quicksand-semibold text-base text-white">Next</Text>
           </Pressable>
         </View>
       </SafeAreaView>
