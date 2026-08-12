@@ -2,11 +2,16 @@ import { Redirect } from 'expo-router';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { getHasSession } from '@/lib/auth';
 import { getHasSeenOnboarding } from '@/lib/onboarding';
 
 export default function HomeScreen() {
   if (!getHasSeenOnboarding()) {
     return <Redirect href="/onboarding" />;
+  }
+
+  if (!getHasSession()) {
+    return <Redirect href="/login" />;
   }
 
   return (

@@ -13,6 +13,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useColorScheme } from 'nativewind';
 import { useEffect, useState } from 'react';
 
+import { loadHasSession } from '@/lib/auth';
 import { loadHasSeenOnboarding } from '@/lib/onboarding';
 
 SplashScreen.preventAutoHideAsync();
@@ -26,19 +27,19 @@ export default function RootLayout() {
     Quicksand_600SemiBold,
     Quicksand_700Bold,
   });
-  const [onboardingChecked, setOnboardingChecked] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
 
   useEffect(() => {
-    loadHasSeenOnboarding().finally(() => setOnboardingChecked(true));
+    Promise.all([loadHasSeenOnboarding(), loadHasSession()]).finally(() => setAuthChecked(true));
   }, []);
 
   useEffect(() => {
-    if (fontsLoaded && onboardingChecked) {
+    if (fontsLoaded && authChecked) {
       SplashScreen.hideAsync();
     }
-  }, [fontsLoaded, onboardingChecked]);
+  }, [fontsLoaded, authChecked]);
 
-  if (!fontsLoaded || !onboardingChecked) {
+  if (!fontsLoaded || !authChecked) {
     return null;
   }
 

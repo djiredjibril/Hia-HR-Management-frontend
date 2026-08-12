@@ -55,13 +55,13 @@ export default function OnboardingScreen() {
 
   const handleNext = () => {
     if (isLastStep) {
-      markOnboardingSeen().then(() => router.replace('/'));
+      markOnboardingSeen().then(() => router.replace('/login'));
       return;
     }
     goToStep(step + 1);
   };
 
-  const handleSkip = () => markOnboardingSeen().then(() => router.replace('/'));
+  const handleSkip = () => markOnboardingSeen().then(() => router.replace('/login'));
 
   return (
     <View className="flex-1 bg-white dark:bg-[#190100]">
