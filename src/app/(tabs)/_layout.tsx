@@ -9,7 +9,7 @@ import { getHasSession } from '@/lib/auth';
 import { getHasSeenOnboarding } from '@/lib/onboarding';
 
 const BAR_HEIGHT = 58;
-const BAR_CORNER_RADIUS = 15;
+const BAR_CORNER_RADIUS = 45;
 const SCAN_BUTTON_SIZE = 56;
 const SCAN_BUTTON_RADIUS = SCAN_BUTTON_SIZE / 2;
 const NOTCH_GAP = 10;
