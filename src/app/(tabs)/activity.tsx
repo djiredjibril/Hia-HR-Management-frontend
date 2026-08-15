@@ -73,19 +73,19 @@ export default function ActivityScreen() {
           <Text className="mt-4 text-center font-quicksand-semibold text-lg text-white">Activity</Text>
 
           <View className="mt-4 flex-row items-center gap-3 px-6">
-            <View className="flex-1 flex-row items-center gap-2 rounded-2xl bg-white/10 px-4 py-3">
-              <Search size={18} color="#9BA0A6" />
+            <View className="flex-1 flex-row items-center gap-2 rounded-2xl bg-white/90 px-4 py-3">
+              <Search size={18} color="#81868C" />
               <TextInput
                 placeholder="Search your payslip, attendence..."
-                placeholderTextColor="#9BA0A6"
-                className="flex-1 font-quicksand text-sm text-white"
+                placeholderTextColor="#81868C"
+                className="flex-1 font-quicksand text-sm text-primary-900"
               />
             </View>
             <Pressable
               hitSlop={8}
-              className="h-11 w-11 items-center justify-center rounded-2xl bg-white/10 active:opacity-80"
+              className="h-11 w-11 items-center justify-center rounded-2xl bg-white active:opacity-80"
             >
-              <ListFilter size={18} color="#FFFFFF" />
+              <ListFilter size={18} color="#81868C" />
             </Pressable>
           </View>
         </SafeAreaView>
