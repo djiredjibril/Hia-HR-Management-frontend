@@ -26,15 +26,16 @@ export default function AttendScreen() {
       <SafeAreaView className="flex-1">
         <View className="flex-row items-center px-4 pt-2">
           <Pressable
-            onPress={() => router.back()}
+            onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))}
             hitSlop={12}
             className="h-10 w-10 items-center justify-center active:opacity-70"
           >
             <ArrowLeft size={24} color={iconColor} />
           </Pressable>
-          <Text className="flex-1 -ml-10 text-center font-quicksand-semibold text-lg text-primary-900 dark:text-white">
+          <Text className="flex-1 text-center font-quicksand-semibold text-lg text-primary-900 dark:text-white">
             Attendance Check
           </Text>
+          <View className="h-10 w-10" />
         </View>
 
         <View className="flex-1 items-center justify-center gap-3 px-8">
