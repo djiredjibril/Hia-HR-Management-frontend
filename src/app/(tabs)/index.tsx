@@ -80,74 +80,85 @@ export default function HomeScreen() {
   const { colorScheme } = useColorScheme();
   const strongIconColor = colorScheme === 'dark' ? '#FFFFFF' : '#17181C';
 
+
   return (
-    <View className="flex-1 light:bg-[#F2F3F5]">
+    <View className="flex-1 bg-[#F2F3F5] dark:bg-primary-958">
       <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
-        <View className="overflow-hidden bg-primary-958 h-60 rounded-br-xl rounded-bl-xl" pointerEvents="box-none">
-          <View className="absolute inset-0" pointerEvents="none">
-            <Items width={203} height={262} color="#FFFFFF" style={{ position: 'absolute', top: -30, left: 200, opacity: 0.5 }} />
-            <ItemsOne width={90} height={212} color="#FFFFFF" style={{ position: 'absolute', top: 5, right: -10, opacity: 0.35 }} />
-            <ItemsTwo width={276} height={126} color="#FFFFFF" style={{ position: 'absolute', top:10, right: 130, opacity: 0.6 }} />
+        <View className="relative">
+          <View className="overflow-hidden bg-primary-958 h-60 rounded-br-xl rounded-bl-xl" pointerEvents="box-none">
+            <View className="absolute inset-0" pointerEvents="none">
+              <Items width={203} height={262} color="#FFFFFF" style={{ position: 'absolute', top: -30, left: 200, opacity: 0.5 }} />
+              <ItemsOne width={90} height={212} color="#FFFFFF" style={{ position: 'absolute', top: 5, right: -10, opacity: 0.35 }} />
+              <ItemsTwo width={276} height={126} color="#FFFFFF" style={{ position: 'absolute', top: 10, right: 130, opacity: 0.6 }} />
+            </View>
+
+            <SafeAreaView edges={['top']}>
+              <View className="flex-row items-center justify-between px-6 pt-4">
+                <View className="flex-row items-center gap-3">
+                  <Image
+                    source={{ uri: CURRENT_USER.avatarUrl }}
+                    className="h-12 w-12 rounded-full border border-white/20"
+                  />
+                  <View>
+                    <Text className="font-quicksand text-[13px] text-primary-400">Good morning</Text>
+                    <Text className="font-quicksand-bold text-lg text-white">{CURRENT_USER.name}</Text>
+                  </View>
+                </View>
+                <Pressable
+                  hitSlop={8}
+                  className="h-11 w-11 items-center justify-center rounded-full bg-white/10 active:opacity-80"
+                >
+                  <Bell size={20} color="#FFFFFF" />
+                </Pressable>
+              </View>
+            </SafeAreaView>
           </View>
 
-          <SafeAreaView edges={['top']}>
-            <View className="flex-row items-center justify-between px-6 pt-4">
-              <View className="flex-row items-center gap-3">
-                <Image
-                  source={{ uri: CURRENT_USER.avatarUrl }}
-                  className="h-12 w-12 rounded-full border border-white/20"
-                />
-                <View>
-                  <Text className="font-quicksand text-[13px] text-primary-400">Good morning</Text>
-                  <Text className="font-quicksand-bold text-lg text-white">{CURRENT_USER.name}</Text>
-                </View>
+          <View className="absolute inset-x-3" style={{ top: 120 }}>
+            <View className="rounded-3xl bg-white px-5 pb-5 pt-5 dark:bg-primary-846">
+              <View className="flex-row items-center justify-between">
+                <Text className="font-quicksand text-sm text-primary-500 dark:text-primary-400">
+                  Today&apos;s Overview
+                </Text>
+                <Pressable hitSlop={8}>
+                  <Ellipsis size={18} color="#9BA0A6" />
+                </Pressable>
               </View>
-              <Pressable
-                hitSlop={8}
-                className="h-11 w-11 items-center justify-center rounded-full bg-white/10 active:opacity-80"
-              >
-                <Bell size={20} color="#FFFFFF" />
-              </Pressable>
-            </View>
-          </SafeAreaView>
-        </View>
+              <Text className="mt-1 font-quicksand-bold text-xl text-primary-900 dark:text-white">
+                {TODAY_LABEL}
+              </Text>
 
-        <View className="-mt-1 px-6">
-          <View className="rounded-3xl bg-primary-928 px-5 pb-5 pt-5">
-            <View className="flex-row items-center justify-between">
-              <Text className="font-quicksand text-sm text-primary-400">Today&apos;s Overview</Text>
-              <Pressable hitSlop={8}>
-                <Ellipsis size={18} color="#9BA0A6" />
-              </Pressable>
-            </View>
-            <Text className="mt-1 font-quicksand-bold text-xl text-white">{TODAY_LABEL}</Text>
-
-            <View className="mt-4 flex-row items-center rounded-2xl bg-[#F2F3F5] py-4">
-              <View className="flex-1 items-center gap-1.5">
-                <Text className="font-quicksand text-xs text-primary-600">Clock In</Text>
-                <Text className="font-quicksand-bold text-lg text-primary-900">08.00 AM</Text>
-                <View className="rounded-full bg-success-50 px-3 py-1">
-                  <Text className="font-quicksand-medium text-[11px] text-success-700">
-                    Done at 07.58 AM
-                  </Text>
+              <View className="mt-4 flex-row items-center rounded-2xl bg-[#F2F3F5] py-4">
+                <View className="flex-1 items-center gap-1.5">
+                  <Text className="font-quicksand text-xs text-primary-600">Clock In</Text>
+                  <Text className="font-quicksand-bold text-lg text-primary-900">08.00 AM</Text>
+                  <View className="rounded-full bg-white px-3 py-1">
+                    <Text className="font-quicksand-medium text-[11px] text-success-700">
+                      Done at 07.58 AM
+                    </Text>
+                  </View>
                 </View>
-              </View>
-              <View className="h-14 w-px bg-primary-300" />
-              <View className="flex-1 items-center gap-1.5">
-                <Text className="font-quicksand text-xs text-primary-600">Clock Out</Text>
-                <Text className="font-quicksand-bold text-lg text-primary-900">05.00 PM</Text>
-                <View className="rounded-full bg-primary-928 px-3 py-1">
-                  <Text className="font-quicksand-medium text-[11px] text-white">Not yet</Text>
+                <View className="h-14 w-px bg-primary-300" />
+                <View className="flex-1 items-center gap-1.5">
+                  <Text className="font-quicksand text-xs text-primary-600">Clock Out</Text>
+                  <Text className="font-quicksand-bold text-lg text-primary-900">05.00 PM</Text>
+                  <View className="rounded-full bg-primary-928 px-3 py-1 dark:bg-white">
+                    <Text className="font-quicksand-medium text-[11px] text-white dark:text-primary-928">
+                      Not yet
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
           </View>
         </View>
 
-        <View className="px-6 pt-8">
-          <Text className="font-quicksand-semibold text-base text-primary-900 dark:text-white">
+        <View style={{ height: 70 }} />
+
+        <View className="pt-10">
+          {/* <Text className="font-quicksand-semibold text-base text-primary-900 dark:text-white">
             Quick Menu
-          </Text>
+          </Text> */}
           <View className="mt-4 flex-row flex-wrap">
             {QUICK_ACTIONS.map(({ label, Icon, color }) => (
               <Pressable key={label} className="w-1/4 items-center gap-2 pb-6 active:opacity-80">
