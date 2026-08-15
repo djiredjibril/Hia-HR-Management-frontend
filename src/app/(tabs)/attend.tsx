@@ -59,6 +59,7 @@ export default function AttendScreen() {
 
         <View className="px-6 pb-4">
           <Pressable
+            onPress={() => router.push('/live-attendance')}
             className="items-center rounded-full py-4 active:opacity-90"
             style={{ backgroundColor: buttonBg }}
           >

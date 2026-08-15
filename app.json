@@ -37,7 +37,13 @@
           }
         }
       ],
-      "expo-font"
+      "expo-font",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Hia RH Management to access your camera to verify your attendance with face recognition."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,
