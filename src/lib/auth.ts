@@ -18,3 +18,8 @@ export async function markSessionActive(): Promise<void> {
   cachedHasSession = true;
   await AsyncStorage.setItem(STORAGE_KEY, 'true');
 }
+
+export async function clearSession(): Promise<void> {
+  cachedHasSession = false;
+  await AsyncStorage.removeItem(STORAGE_KEY);
+}
