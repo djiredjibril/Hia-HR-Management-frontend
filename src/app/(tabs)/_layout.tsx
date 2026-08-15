@@ -62,6 +62,7 @@ export default function TabsLayout() {
   const pathname = usePathname();
   const { width } = useWindowDimensions();
   const isAttendScreen = pathname === '/attend';
+  const isProfileScreen = pathname === '/profile';
   const isDark = colorScheme === 'dark';
   const activeColor = isDark ? '#FFFFFF' : '#17181C';
   const inactiveColor = '#9BA0A6';
@@ -145,11 +146,12 @@ export default function TabsLayout() {
             tabBarIcon: ({ color, focused, size }) => (
               <User color={color} size={size} fill={focused ? color : 'none'} />
             ),
+            tabBarStyle: { display: 'none' },
           }}
         />
       </Tabs>
 
-      {!isAttendScreen && (
+      {!isAttendScreen && !isProfileScreen && (
         <Pressable
           onPress={() => router.navigate('/attend')}
           hitSlop={8}

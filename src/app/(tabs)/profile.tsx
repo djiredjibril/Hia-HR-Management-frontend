@@ -122,7 +122,7 @@ export default function ProfileScreen() {
           </SafeAreaView>
         </View>
 
-        <View className="px-6 pb-10 pt-6">
+        <SafeAreaView edges={['bottom']} className="px-6 pb-4 pt-6">
           {sections.map((section) => (
             <View key={section.title} className="mb-6">
               <Text className="mb-2 px-1 font-quicksand-medium text-xs uppercase text-primary-500">
@@ -182,7 +182,7 @@ export default function ProfileScreen() {
               </View>
             </View>
           ))}
-        </View>
+        </SafeAreaView>
       </ScrollView>
     </View>
   );
