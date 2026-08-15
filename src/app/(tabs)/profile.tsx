@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import {
+  ArrowLeft,
   Bell,
   Briefcase,
   Camera,
@@ -97,7 +98,17 @@ export default function ProfileScreen() {
           </View>
 
           <SafeAreaView edges={['top']}>
-            <View className="items-center px-6 pb-6 pt-4">
+            <View className="px-4 pt-2">
+              <Pressable
+                onPress={() => (router.canGoBack() ? router.back() : router.navigate('/'))}
+                hitSlop={12}
+                className="h-10 w-10 items-center justify-center active:opacity-70"
+              >
+                <ArrowLeft size={24} color="#FFFFFF" />
+              </Pressable>
+            </View>
+
+            <View className="items-center px-6 pb-6 pt-2">
               <View className="relative">
                 <Image
                   source={{ uri: CURRENT_USER.avatarUrl }}
