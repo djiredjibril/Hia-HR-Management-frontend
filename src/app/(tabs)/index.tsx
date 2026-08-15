@@ -80,7 +80,7 @@ export default function HomeScreen() {
   const { colorScheme } = useColorScheme();
   const strongIconColor = colorScheme === 'dark' ? '#FFFFFF' : '#17181C';
 
-
+  
   return (
     <View className="flex-1 bg-[#F2F3F5] dark:bg-primary-958">
       <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
@@ -156,9 +156,6 @@ export default function HomeScreen() {
         <View style={{ height: 70 }} />
 
         <View className="pt-10">
-          {/* <Text className="font-quicksand-semibold text-base text-primary-900 dark:text-white">
-            Quick Menu
-          </Text> */}
           <View className="mt-4 flex-row flex-wrap">
             {QUICK_ACTIONS.map(({ label, Icon, color }) => (
               <Pressable key={label} className="w-1/4 items-center gap-2 pb-6 active:opacity-80">

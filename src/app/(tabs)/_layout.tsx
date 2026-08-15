@@ -1,25 +1,69 @@
 import { Redirect, Tabs, useRouter } from 'expo-router';
-import { Pressable, View } from 'react-native';
+import { Pressable, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useColorScheme } from 'nativewind';
+import { Path, Svg } from 'react-native-svg';
 import { ChartPie, House, Hourglass, Scan, User } from 'lucide-react-native';
 
 import { getHasSession } from '@/lib/auth';
 import { getHasSeenOnboarding } from '@/lib/onboarding';
 
 const BAR_HEIGHT = 58;
+const BAR_CORNER_RADIUS = 15;
 const SCAN_BUTTON_SIZE = 56;
+const SCAN_BUTTON_RADIUS = SCAN_BUTTON_SIZE / 2;
+const NOTCH_GAP = 10;
+const NOTCH_RADIUS = SCAN_BUTTON_RADIUS + NOTCH_GAP;
+
+function TabBarBackground({
+  width,
+  height,
+  color,
+}: {
+  width: number;
+  height: number;
+  color: string;
+}) {
+  const notchCenterX = width / 2;
+  const left = notchCenterX - NOTCH_RADIUS;
+  const right = notchCenterX + NOTCH_RADIUS;
+
+  const path = `
+    M0,${BAR_CORNER_RADIUS}
+    Q0,0 ${BAR_CORNER_RADIUS},0
+    L${left},0
+    A${NOTCH_RADIUS},${NOTCH_RADIUS} 0 0 0 ${right},0
+    L${width - BAR_CORNER_RADIUS},0
+    Q${width},0 ${width},${BAR_CORNER_RADIUS}
+    L${width},${height}
+    L0,${height}
+    Z
+  `;
+
+  return (
+    <Svg
+      width={width}
+      height={height}
+      style={{ position: 'absolute', top: 0, left: 0 }}
+      pointerEvents="none"
+    >
+      <Path d={path} fill={color} />
+    </Svg>
+  );
+}
 
 export default function TabsLayout() {
   const { colorScheme } = useColorScheme();
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const { width } = useWindowDimensions();
   const isDark = colorScheme === 'dark';
   const activeColor = isDark ? '#FFFFFF' : '#17181C';
   const inactiveColor = '#9BA0A6';
   const barBackground = isDark ? '#17181C' : '#FFFFFF';
   const scanButtonBg = isDark ? '#FFFFFF' : '#17181C';
   const scanIconColor = isDark ? '#17181C' : '#FFFFFF';
+  const barHeight = BAR_HEIGHT + insets.bottom;
 
   if (!getHasSeenOnboarding()) {
     return <Redirect href="/onboarding" />;
@@ -37,14 +81,15 @@ export default function TabsLayout() {
           tabBarActiveTintColor: activeColor,
           tabBarInactiveTintColor: inactiveColor,
           tabBarLabelStyle: { fontFamily: 'Quicksand_600SemiBold', fontSize: 11 },
+          tabBarBackground: () => (
+            <TabBarBackground width={width} height={barHeight} color={barBackground} />
+          ),
           tabBarStyle: {
-            backgroundColor: barBackground,
+            backgroundColor: 'transparent',
             borderTopWidth: 0,
-            height: BAR_HEIGHT + insets.bottom,
+            height: barHeight,
             paddingTop: 10,
             paddingBottom: insets.bottom + 8,
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
             shadowColor: 'transparent',
             shadowOpacity: 0,
             shadowRadius: 0,
@@ -73,9 +118,9 @@ export default function TabsLayout() {
           name="attend"
           options={{
             title: 'Attend',
-            // Kept as an empty, normally-sized placeholder so the tab bar's own
-            // shape/shadow stays a plain rectangle. The real button is the
-            // absolutely-positioned Pressable below, floating on top of it.
+            // Kept as an empty, normally-sized placeholder so the tab item's
+            // layout/label position stays standard. The real button is the
+            // absolutely-positioned Pressable below, floating over the notch.
             tabBarIcon: () => <View style={{ width: 22, height: 22 }} />,
           }}
         />
@@ -103,12 +148,12 @@ export default function TabsLayout() {
         className="items-center justify-center rounded-full active:opacity-90"
         style={{
           position: 'absolute',
-          bottom: insets.bottom + BAR_HEIGHT - SCAN_BUTTON_SIZE / 2,
+          bottom: barHeight - SCAN_BUTTON_RADIUS,
           left: '50%',
-          marginLeft: -SCAN_BUTTON_SIZE / 2,
+          marginLeft: -SCAN_BUTTON_RADIUS,
           width: SCAN_BUTTON_SIZE,
           height: SCAN_BUTTON_SIZE,
-          borderRadius: SCAN_BUTTON_SIZE / 2,
+          borderRadius: SCAN_BUTTON_RADIUS,
           backgroundColor: scanButtonBg,
         }}
       >
