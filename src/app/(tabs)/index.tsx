@@ -1,5 +1,6 @@
 import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter, type Href } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import {
   AlarmClock,
@@ -30,9 +31,9 @@ const TODAY_LABEL = new Date().toLocaleDateString('en-US', {
   year: 'numeric',
 });
 
-const QUICK_ACTIONS: { label: string; Icon: typeof ClipboardList; color: string | null }[] = [
+const QUICK_ACTIONS: { label: string; Icon: typeof ClipboardList; color: string | null; href?: Href }[] = [
   { label: 'Payroll', Icon: ClipboardList, color: '#34C759' },
-  { label: 'Payslip', Icon: HandCoins, color: '#F4715C' },
+  { label: 'Payslip', Icon: HandCoins, color: '#F4715C', href: '/payslip' },
   { label: 'Counseling', Icon: MessagesSquare, color: '#FF9F43' },
   { label: 'Time Off', Icon: NotebookPen, color: '#2FB551' },
   { label: 'Calendar', Icon: CalendarDays, color: '#FF3B30' },
@@ -77,6 +78,7 @@ const ATTENDANCE = [
 ];
 
 export default function HomeScreen() {
+  const router = useRouter();
   const { colorScheme } = useColorScheme();
   const strongIconColor = colorScheme === 'dark' ? '#FFFFFF' : '#17181C';
 
@@ -157,8 +159,12 @@ export default function HomeScreen() {
 
         <View className="pt-10">
           <View className="mt-4 flex-row flex-wrap">
-            {QUICK_ACTIONS.map(({ label, Icon, color }) => (
-              <Pressable key={label} className="w-1/4 items-center gap-2 pb-6 active:opacity-80">
+            {QUICK_ACTIONS.map(({ label, Icon, color, href }) => (
+              <Pressable
+                key={label}
+                onPress={href ? () => router.push(href) : undefined}
+                className="w-1/4 items-center gap-2 pb-6 active:opacity-80"
+              >
                 <View className="h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-sm shadow-black/5 dark:bg-primary-846">
                   <Icon size={24} strokeWidth={1.8} color={color ?? strongIconColor} />
                 </View>
