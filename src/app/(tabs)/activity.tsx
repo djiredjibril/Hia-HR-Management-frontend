@@ -1,7 +1,7 @@
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useColorScheme } from 'nativewind';
-import { ArrowRight, ClipboardCheck, HeartCrack, ListFilter, Search, Smile } from 'lucide-react-native';
+import { ArrowRight, ClipboardCheck, HeartCrack, ListFilter, ScanFace, Search } from 'lucide-react-native';
 
 import Items from '@/assets/svg/Bg icons/Items.svg';
 import ItemsOne from '@/assets/svg/Bg icons/Items-1.svg';
@@ -146,7 +146,7 @@ function ActivityIcon({ entry }: { entry: ActivityEntry }) {
   if (entry.type === 'attendance') {
     return (
       <View className="h-11 w-11 items-center justify-center rounded-2xl border border-success-200 bg-success-50">
-        <Smile size={20} color="#2FB551" />
+        <ScanFace size={20} color="#2FB551" />
       </View>
     );
   }
