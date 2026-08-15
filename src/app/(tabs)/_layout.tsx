@@ -14,6 +14,8 @@ const SCAN_BUTTON_SIZE = 56;
 const SCAN_BUTTON_RADIUS = SCAN_BUTTON_SIZE / 2;
 const NOTCH_GAP = 10;
 const NOTCH_RADIUS = SCAN_BUTTON_RADIUS + NOTCH_GAP;
+const NOTCH_FILLET = 16;
+const NOTCH_DEPTH = NOTCH_RADIUS + 6;
 
 function TabBarBackground({
   width,
@@ -25,14 +27,15 @@ function TabBarBackground({
   color: string;
 }) {
   const notchCenterX = width / 2;
-  const left = notchCenterX - NOTCH_RADIUS;
-  const right = notchCenterX + NOTCH_RADIUS;
+  const left = notchCenterX - NOTCH_RADIUS - NOTCH_FILLET;
+  const right = notchCenterX + NOTCH_RADIUS + NOTCH_FILLET;
 
   const path = `
     M0,${BAR_CORNER_RADIUS}
     Q0,0 ${BAR_CORNER_RADIUS},0
     L${left},0
-    A${NOTCH_RADIUS},${NOTCH_RADIUS} 0 0 0 ${right},0
+    C${left + NOTCH_FILLET},0 ${notchCenterX - NOTCH_RADIUS},${NOTCH_DEPTH} ${notchCenterX},${NOTCH_DEPTH}
+    C${notchCenterX + NOTCH_RADIUS},${NOTCH_DEPTH} ${right - NOTCH_FILLET},0 ${right},0
     L${width - BAR_CORNER_RADIUS},0
     Q${width},0 ${width},${BAR_CORNER_RADIUS}
     L${width},${height}
