@@ -1,4 +1,4 @@
-import { Redirect, Tabs, useRouter } from 'expo-router';
+import { Redirect, Tabs, usePathname, useRouter } from 'expo-router';
 import { Pressable, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useColorScheme } from 'nativewind';
@@ -59,7 +59,9 @@ export default function TabsLayout() {
   const { colorScheme } = useColorScheme();
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const pathname = usePathname();
   const { width } = useWindowDimensions();
+  const isAttendScreen = pathname === '/attend';
   const isDark = colorScheme === 'dark';
   const activeColor = isDark ? '#FFFFFF' : '#17181C';
   const inactiveColor = '#9BA0A6';
@@ -125,6 +127,8 @@ export default function TabsLayout() {
             // layout/label position stays standard. The real button is the
             // absolutely-positioned Pressable below, floating over the notch.
             tabBarIcon: () => <View style={{ width: 22, height: 22 }} />,
+            // The screen itself is a full-screen flow, not a tabbed view — hide the bar when it's focused.
+            tabBarStyle: { display: 'none' },
           }}
         />
         <Tabs.Screen
@@ -145,23 +149,25 @@ export default function TabsLayout() {
         />
       </Tabs>
 
-      <Pressable
-        onPress={() => router.navigate('/attend')}
-        hitSlop={8}
-        className="items-center justify-center rounded-full active:opacity-90"
-        style={{
-          position: 'absolute',
-          bottom: barHeight - SCAN_BUTTON_RADIUS,
-          left: '50%',
-          marginLeft: -SCAN_BUTTON_RADIUS,
-          width: SCAN_BUTTON_SIZE,
-          height: SCAN_BUTTON_SIZE,
-          borderRadius: SCAN_BUTTON_RADIUS,
-          backgroundColor: scanButtonBg,
-        }}
-      >
-        <Scan color={scanIconColor} size={22} />
-      </Pressable>
+      {!isAttendScreen && (
+        <Pressable
+          onPress={() => router.navigate('/attend')}
+          hitSlop={8}
+          className="items-center justify-center rounded-full active:opacity-90"
+          style={{
+            position: 'absolute',
+            bottom: barHeight - SCAN_BUTTON_RADIUS,
+            left: '50%',
+            marginLeft: -SCAN_BUTTON_RADIUS,
+            width: SCAN_BUTTON_SIZE,
+            height: SCAN_BUTTON_SIZE,
+            borderRadius: SCAN_BUTTON_RADIUS,
+            backgroundColor: scanButtonBg,
+          }}
+        >
+          <Scan color={scanIconColor} size={22} />
+        </Pressable>
+      )}
     </View>
   );
 }
