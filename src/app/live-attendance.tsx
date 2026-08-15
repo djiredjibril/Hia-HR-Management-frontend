@@ -59,7 +59,7 @@ export default function LiveAttendanceScreen() {
       if (!finished) return;
       sweepLoopRef.current?.stop();
       setScanState('success');
-      setTimeout(() => router.back(), 700);
+      setTimeout(() => router.replace('/attend-success'), 700);
     });
   };
 
