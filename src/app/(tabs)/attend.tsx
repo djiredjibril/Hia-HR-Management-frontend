@@ -4,6 +4,9 @@ import { useRouter } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import { ArrowLeft, ScanFace } from 'lucide-react-native';
 
+import BgIconLeft from '@/assets/svg/Bg icons/bg-icon-left.svg';
+import BgIconRightMiddle from '@/assets/svg/Bg icons/bg-icon-right-middle.svg';
+
 export default function AttendScreen() {
   const router = useRouter();
   const { colorScheme } = useColorScheme();
@@ -11,17 +14,24 @@ export default function AttendScreen() {
   const iconColor = isDark ? '#FFFFFF' : '#17181C';
   const buttonBg = isDark ? '#FFFFFF' : '#17181C';
   const buttonTextColor = isDark ? '#17181C' : '#FFFFFF';
+  const decorationColor = isDark ? '#FFFFFF' : '#17181C';
 
   return (
     <View className="flex-1 overflow-hidden bg-primary-50 dark:bg-primary-958">
-      <View
-        className="absolute -left-24 -top-16 h-64 w-64 rounded-full bg-primary-200/60 dark:bg-primary-900/60"
-        pointerEvents="none"
-      />
-      <View
-        className="absolute -bottom-32 -right-16 h-72 w-72 rounded-full bg-primary-200/60 dark:bg-primary-900/60"
-        pointerEvents="none"
-      />
+      <View className="absolute inset-0" pointerEvents="none">
+        <BgIconLeft
+          width={338}
+          height={208}
+          color={decorationColor}
+          style={{ position: 'absolute', top: -24, left: -70 }}
+        />
+        <BgIconRightMiddle
+          width={314}
+          height={414}
+          color={decorationColor}
+          style={{ position: 'absolute', top: '50%', right: -50 }}
+        />
+      </View>
 
       <SafeAreaView className="flex-1">
         <View className="flex-row items-center px-4 pt-2">
