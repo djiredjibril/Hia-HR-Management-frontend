@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Modal, Pressable, ScrollView, Text, View } from 'react-native';
+import { Image, Modal, Pressable, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useColorScheme } from 'nativewind';
-import { ArrowLeft, Check, FileSearch, Sparkles } from 'lucide-react-native';
+import { ArrowLeft, Check } from 'lucide-react-native';
 
 const TERMS = [
   'You are required to provide a notice period as stipulated in your contract.',
@@ -54,14 +54,7 @@ export default function ResignScreen() {
       </SafeAreaView>
 
       <View className="flex-1 items-center justify-center px-10">
-        <View className="h-32 w-32 items-center justify-center rounded-full bg-primary-900 dark:bg-primary-846">
-          <FileSearch size={52} color="#FFFFFF" strokeWidth={1.6} />
-          <Sparkles
-            size={16}
-            color="#FFFFFF"
-            style={{ position: 'absolute', top: 10, left: 16, opacity: 0.6 }}
-          />
-        </View>
+        <Image source={require('@/assets/emptystate.png')} className="h-32 w-32" resizeMode="contain" />
         <Text className="mt-6 text-center font-quicksand-medium text-sm leading-5 text-primary-500 dark:text-primary-400">
           Fiuh... you haven&apos;t submit any resign letter.{'\n'}Be happy on your work!
         </Text>
