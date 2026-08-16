@@ -35,7 +35,7 @@ const QUICK_ACTIONS: { label: string; Icon: typeof ClipboardList; color: string 
   { label: 'Payroll', Icon: ClipboardList, color: '#34C759' },
   { label: 'Payslip', Icon: HandCoins, color: '#F4715C', href: '/payslip_pin' },
   { label: 'Counseling', Icon: MessagesSquare, color: '#FF9F43' },
-  { label: 'Time Off', Icon: NotebookPen, color: '#2FB551' },
+  { label: 'Time Off', Icon: NotebookPen, color: '#2FB551', href: '/time-off' },
   { label: 'Calendar', Icon: CalendarDays, color: '#FF3B30' },
   { label: 'Overtime', Icon: AlarmClock, color: '#14B8A6' },
   { label: 'Resign', Icon: Power, color: '#FF6259' },
