@@ -36,7 +36,7 @@ export default function PayslipScreen() {
 
   const handleSubmit = () => {
     if (!isComplete) return;
-    router.back();
+    router.replace('/payslip');
   };
 
   return (
