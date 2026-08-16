@@ -5,6 +5,10 @@ import { useColorScheme } from 'nativewind';
 import { Path, Svg } from 'react-native-svg';
 import { ArrowLeft, Download } from 'lucide-react-native';
 
+import Items from '@/assets/svg/Bg icons/Items.svg';
+import ItemsOne from '@/assets/svg/Bg icons/Items-1.svg';
+import ItemsTwo from '@/assets/svg/Bg icons/Items-2.svg';
+
 const CARD_COLOR = '#17181C';
 
 const PAYSLIP = {
@@ -80,27 +84,35 @@ export default function PayslipScreen() {
 
       <ScrollView bounces={false} showsVerticalScrollIndicator={false} contentContainerClassName="px-6 pb-8 pt-2">
         <View className="overflow-hidden rounded-t-3xl" style={{ backgroundColor: CARD_COLOR }}>
-          <View className="flex-row items-center justify-between px-5 pt-5">
-            <View className="flex-1 flex-row items-center gap-3">
-              <Image source={{ uri: PAYSLIP.employee.avatarUrl }} className="h-12 w-12 rounded-full" />
-              <View className="flex-1">
-                <Text className="font-quicksand-semibold text-base text-white">{PAYSLIP.employee.name}</Text>
-                <Text className="font-quicksand text-sm text-primary-400">{PAYSLIP.employee.role}</Text>
-                <Text className="font-quicksand text-xs text-primary-500">{PAYSLIP.employee.employeeId}</Text>
-              </View>
+          <View className="relative overflow-hidden">
+            <View className="absolute inset-0" pointerEvents="none">
+              <ItemsTwo width={220} height={100} color="#FFFFFF" style={{ position: 'absolute', top: -10, right: -40, opacity: 0.12 }} />
+              <ItemsOne width={70} height={160} color="#FFFFFF" style={{ position: 'absolute', top: 20, right: 30, opacity: 0.08 }} />
+              <Items width={120} height={150} color="#FFFFFF" style={{ position: 'absolute', top: -30, right: -20, opacity: 0.08 }} />
             </View>
-            <Pressable
-              hitSlop={8}
-              className="h-10 w-10 items-center justify-center rounded-full bg-white active:opacity-80"
-            >
-              <Download size={16} color="#17181C" />
-            </Pressable>
-          </View>
 
-          <View className="flex-row items-center justify-between px-5 pb-4 pt-4">
-            <Text className="font-quicksand-semibold text-sm text-primary-400">{PAYSLIP.month}</Text>
-            <View className="rounded-full bg-white px-4 py-1.5">
-              <Text className="font-quicksand-medium text-xs text-white/1">{PAYSLIP.period}</Text>
+            <View className="flex-row items-center justify-between px-5 pt-5">
+              <View className="flex-1 flex-row items-center gap-3">
+                <Image source={{ uri: PAYSLIP.employee.avatarUrl }} className="h-12 w-12 rounded-full" />
+                <View className="flex-1">
+                  <Text className="font-quicksand-semibold text-base text-white">{PAYSLIP.employee.name}</Text>
+                  <Text className="font-quicksand text-sm text-primary-400">{PAYSLIP.employee.role}</Text>
+                  <Text className="font-quicksand text-xs text-primary-500">{PAYSLIP.employee.employeeId}</Text>
+                </View>
+              </View>
+              <Pressable
+                hitSlop={8}
+                className="h-10 w-10 items-center justify-center rounded-full bg-white active:opacity-80"
+              >
+                <Download size={16} color="#17181C" />
+              </Pressable>
+            </View>
+
+            <View className="flex-row items-center justify-between px-5 pb-4 pt-4">
+              <Text className="font-quicksand-semibold text-sm text-primary-400">{PAYSLIP.month}</Text>
+              <View className="rounded-full bg-white px-4 py-1.5">
+                <Text className="font-quicksand-medium text-xs text-white/1">{PAYSLIP.period}</Text>
+              </View>
             </View>
           </View>
 
