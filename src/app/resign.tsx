@@ -31,8 +31,7 @@ export default function ResignScreen() {
   const handleConfirm = () => {
     if (!acknowledged) return;
     handleClose();
-    if (router.canGoBack()) router.back();
-    else router.replace('/');
+    router.push('/resign-form');
   };
 
   return (
