@@ -99,8 +99,8 @@ export default function PayslipScreen() {
 
           <View className="flex-row items-center justify-between px-5 pb-4 pt-4">
             <Text className="font-quicksand-semibold text-sm text-primary-400">{PAYSLIP.month}</Text>
-            <View className="rounded-full bg-white/10 px-4 py-1.5">
-              <Text className="font-quicksand-medium text-xs text-white">{PAYSLIP.period}</Text>
+            <View className="rounded-full bg-white px-4 py-1.5">
+              <Text className="font-quicksand-medium text-xs text-white/1">{PAYSLIP.period}</Text>
             </View>
           </View>
 
