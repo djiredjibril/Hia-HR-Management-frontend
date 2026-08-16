@@ -38,7 +38,7 @@ const QUICK_ACTIONS: { label: string; Icon: typeof ClipboardList; color: string 
   { label: 'Time Off', Icon: NotebookPen, color: '#2FB551', href: '/time-off' },
   { label: 'Calendar', Icon: CalendarDays, color: '#FF3B30' },
   { label: 'Overtime', Icon: AlarmClock, color: '#14B8A6' },
-  { label: 'Resign', Icon: Power, color: '#FF6259' },
+  { label: 'Resign', Icon: Power, color: '#FF6259', href: '/resign' },
   { label: 'Other', Icon: Ellipsis, color: null },
 ];
 
