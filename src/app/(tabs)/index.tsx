@@ -33,7 +33,7 @@ const TODAY_LABEL = new Date().toLocaleDateString('en-US', {
 
 const QUICK_ACTIONS: { label: string; Icon: typeof ClipboardList; color: string | null; href?: Href }[] = [
   { label: 'Payroll', Icon: ClipboardList, color: '#34C759' },
-  { label: 'Payslip', Icon: HandCoins, color: '#F4715C', href: '/payslip' },
+  { label: 'Payslip', Icon: HandCoins, color: '#F4715C', href: '/payslip_pin' },
   { label: 'Counseling', Icon: MessagesSquare, color: '#FF9F43' },
   { label: 'Time Off', Icon: NotebookPen, color: '#2FB551' },
   { label: 'Calendar', Icon: CalendarDays, color: '#FF3B30' },
