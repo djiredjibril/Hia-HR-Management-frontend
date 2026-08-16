@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Modal, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useColorScheme } from 'nativewind';
@@ -97,7 +97,8 @@ export default function ResignFormScreen() {
         </View>
       </SafeAreaView>
 
-      <ScrollView bounces={false} showsVerticalScrollIndicator={false} contentContainerClassName="pb-32">
+      <KeyboardAvoidingView className="flex-1" behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+      <ScrollView bounces={false} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled" contentContainerClassName="pb-32">
         <View className="bg-white px-6 py-5 dark:bg-primary-928">
           <Text className="font-quicksand-semibold text-base text-primary-900 dark:text-white">
             Set your resignation date
@@ -189,6 +190,7 @@ export default function ResignFormScreen() {
           </Text>
         </Pressable>
       </View>
+      </KeyboardAvoidingView>
 
       <Modal visible={isDatePickerOpen} transparent animationType="fade" onRequestClose={() => setDatePickerOpen(false)}>
         <Pressable className="flex-1 items-center justify-center bg-black/40 px-6" onPress={() => setDatePickerOpen(false)}>
